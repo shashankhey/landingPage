@@ -45,7 +45,8 @@ const Navbar = () => {
             Testimonials
           </Link>
         </li>
-        <li><button className="btn"><Link to="contact" smooth={true} offset={-260} duration={500}>
+        <li>
+          <button className="btn"><Link to="contact" smooth={true} offset={-260} duration={500}>
             Contact us
           </Link></button>
           

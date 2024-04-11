@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Contact.css";
 import msg_icon from "../../assets/msg-icon.png";
 import mail_icon from "../../assets/mail-icon.png";
 import phone_icon from "../../assets/phone-icon.png";
 import location_icon from "../../assets/location-icon.png";
 import white_arrow from "../../assets/white-arrow.png";
+import { Resend } from "resend";
 
 const Contact = () => {
-  const [result, setResult] = React.useState("");
+  const [result, setResult] = useState("");
+  const [email, setEmail] = useState("")
+  const [emailData, setEmailData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+  console.log(email);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -26,6 +36,14 @@ const Contact = () => {
     if (data.success) {
       setResult("Form Submitted Successfully");
       event.target.reset();
+      const resend = new Resend('re_Y1qM5TZ5_9cA5nYK6a1MqwdSJrMgs4Qem');
+
+      await resend.emails.send({
+        from: 'shashankhey171@gmail.com',
+        to: ['gtpriya18@gmail.com'],
+        subject: 'Hello World',
+        html: '<strong>It works!</strong>',
+      });
     } else {
       // console.log("Error", data);
       setResult(data.message);
@@ -76,6 +94,15 @@ const Contact = () => {
             placeholder="Enter your mobile number"
             pattern="[789][0-9]{9}"
             title="Please enter a valid phone number"
+            required
+          />
+          <label>Email Address</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your mobile number"
+            title="Please enter a valid email"
+            onChange={handleEmailChange}
             required
           />
           <label>Write your message here</label>
