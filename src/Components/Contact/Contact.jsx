@@ -84,7 +84,7 @@ const Contact = () => {
             rows="6"
             placeholder="Enter your message"
             title="Max characters allowed is 500"
-            maxLength={250}
+            maxLength={500}
             required
           ></textarea>
           <button type="submit" className="btn dark-btn">
