@@ -7,7 +7,7 @@ import location_icon from "../../assets/location-icon.png";
 import white_arrow from "../../assets/white-arrow.png";
 
 const Contact = () => {
-    const [result, setResult] = React.useState("");
+  const [result, setResult] = React.useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ const Contact = () => {
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     const data = await response.json();
@@ -65,6 +65,8 @@ const Contact = () => {
             type="text"
             name="name"
             placeholder="Enter your name"
+            pattern="[A-Za-z\s]{3,}"
+            title="Name must contain only letters and be at least 3 characters long"
             required
           />
           <label>Phone Number</label>
@@ -72,6 +74,8 @@ const Contact = () => {
             type="tel"
             name="phone"
             placeholder="Enter your mobile number"
+            pattern="[789][0-9]{9}"
+            title="Please enter a valid phone number"
             required
           />
           <label>Write your message here</label>
@@ -79,6 +83,8 @@ const Contact = () => {
             name="message"
             rows="6"
             placeholder="Enter your message"
+            title="Max characters allowed is 500"
+            maxLength={250}
             required
           ></textarea>
           <button type="submit" className="btn dark-btn">
