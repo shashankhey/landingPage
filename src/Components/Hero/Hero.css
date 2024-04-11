@@ -46,3 +46,27 @@
         margin: 15px auto 30px;
     }
 }
+
+@media (max-width: 450px) {
+    .hero-text h1{
+        font-size: 20px;
+        min-width: 250px;
+        margin: auto;
+    }
+    .hero-text p{
+        font-size: 12px;
+        margin: 10px auto 20px;
+    }
+}
+
+@media (max-width: 280px) {
+    .hero-text h1{
+        font-size: 14px;
+        min-width: 150px;
+        margin: auto;
+    }
+    .hero-text p{
+        font-size: 10px;
+        margin: 5px auto 10px;
+    }
+}
