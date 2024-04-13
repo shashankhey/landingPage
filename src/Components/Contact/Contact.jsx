@@ -35,7 +35,7 @@ const Contact = () => {
 
     if (data.success) {
     try {
-      await axios.post("http://localhost:5000/send-email", { email })
+      await axios.post("/api/send-email", { email })
       console.log("Email sent successfully");
       setResult("Form Submitted Successfully");
     } catch (error) {
