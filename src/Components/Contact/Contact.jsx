@@ -34,15 +34,17 @@ const Contact = () => {
     const data = await response.json();
 
     if (data.success) {
-    try {
-      await axios.post("/api/send-email", { email })
-      console.log("Email sent successfully");
-      setResult("Form Submitted Successfully");
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
+      try {
+        await axios.post("/send-email", { email });
+        console.log("Email sent successfully");
+        setResult("Form Submitted Successfully");
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
     }
   };
+
+  console.log(result);
 
   return (
     <div className="contact" name="contact">
