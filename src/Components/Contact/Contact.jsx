@@ -5,17 +5,17 @@ import mail_icon from "../../assets/mail-icon.png";
 import phone_icon from "../../assets/phone-icon.png";
 import location_icon from "../../assets/location-icon.png";
 import white_arrow from "../../assets/white-arrow.png";
-import { Resend } from "resend";
+import axios from "axios";
 
 const Contact = () => {
   const [result, setResult] = useState("");
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const [emailData, setEmailData] = useState(null);
   const [error, setError] = useState(null);
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   console.log(email);
 
@@ -34,21 +34,16 @@ const Contact = () => {
     const data = await response.json();
 
     if (data.success) {
+    try {
+      await axios.post("http://localhost:5000/send-email", { email })
+      console.log("Email sent successfully");
       setResult("Form Submitted Successfully");
-      event.target.reset();
-      const resend = new Resend('re_Y1qM5TZ5_9cA5nYK6a1MqwdSJrMgs4Qem');
-
-      await resend.emails.send({
-        from: 'shashankhey171@gmail.com',
-        to: ['gtpriya18@gmail.com'],
-        subject: 'Hello World',
-        html: '<strong>It works!</strong>',
-      });
-    } else {
-      // console.log("Error", data);
-      setResult(data.message);
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
     }
   };
+
   return (
     <div className="contact" name="contact">
       <div className="contact-col">
@@ -126,3 +121,6 @@ const Contact = () => {
 };
 
 export default Contact;
+
+// service_arcygap
+// template_hi7eten
